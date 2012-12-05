@@ -1,23 +1,9 @@
 #!/bin/bash
 gstatus=$(git status -s)
-runtests="test/full.js"
 
 if [[ "$gstatus" =~ ^[MA].*\.js.* ]]
 then
-    echo "new or modified javascript files found..executing tests"
-    if [[ "$gstatus" =~ ^[MA].*(initializers).*\.js.* ]] ; then
-        echo "...found modified initializers file, adding initializers specific tests"
-        runtests="$runtests test/init.js"
-    fi
-    if [[ "$gstatus" =~ ^[MA].*(widgets).*\.js.* ]] ; then
-        echo "...found modified widget file, adding widget specific tests"
-        runtests="$runtests test/widgets.js"
-    fi
-    if [[ "$gstatus" =~ ^[MA].*(sections).*\.js.* ]] ; then
-        echo "...found modified sections file, adding sections specific tests"
-        runtests="$runtests test/sections.js"
-    fi
-    casperjs test $runtests
+    testacular start
     exit $?
 fi
 
