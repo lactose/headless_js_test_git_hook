@@ -1,10 +1,9 @@
 #!/bin/bash
 gstatus=$(git status -s)
 
-if [[ "$gstatus" =~ ^[MA].*\.js.* ]]
+if [[ "$gstatus" =~ [MA].*\.js.* ]]
 then
+    echo "modified javascript files found..running unit tests"
     testacular start
     exit $?
 fi
-
-
